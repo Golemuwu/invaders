@@ -144,6 +144,12 @@ var buclePrincipal = {
         player[0] += direccion;
         //---------
 
+        //El Winse
+
+        if(Marcians.length == 0){
+            restart();
+        };
+
         //Movimiento de Marcianos
         
         var avanceVertical = 0;
