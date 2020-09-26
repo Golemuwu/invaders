@@ -6,6 +6,10 @@ var mute               =     1;
 var hability           =     1;
 var direccionMars  = 1;
 
+var tempShootMars=0;
+
+var owo = 1; //borrar
+
 function Sonido(nota,time){
     //creamos oscilador
    var osc = context.createOscillator();
@@ -143,6 +147,56 @@ var buclePrincipal = {
 
         player[0] += direccion;
         //---------
+
+        //El disparo de los MARCIANS
+
+        //Contar cuales pueder disparar
+
+        var marciansWCS = []; //Marcians who can shoot
+        
+
+        for(i = Marcians.length-1; i>=0 && marciansWCS.length < CantDeMarsPColumna; i-- ){
+            //Chequea que no haya marcianos delante de él
+            var Canshoot = 1;
+            for(j=0; j < Marcians.length;j++){
+                if(Marcians[j][1] == Marcians[i][1] && Marcians[j][2] > Marcians[i][2]){
+                    Canshoot=0;
+                };
+            };
+
+            //Chequea si el marciano numero "i" puede disparar
+            
+            if(Canshoot==1){
+                marciansWCS.push(i);
+            };
+        };
+
+        //Elije cual de todos dispara
+
+        var num = Math.floor(Math.random() * (marciansWCS.length));
+
+        if(tempShootMars > 20){
+            tempShootMars=0;
+            var i = [];
+            i[0]=1;
+            i[1]= Marcians[marciansWCS[num]][1]+ tamMars/2-3/2;
+            i[2]= Marcians[marciansWCS[num]][2]+10;
+            disparo.push(i);
+        };
+        tempShootMars++;
+
+    
+
+        //Hacer que el Marciano número "num" en la matriz dispare
+
+        if( owo == 1){
+            owo = 0;
+            console.log(marciansWCS);
+        };
+
+
+
+        //-------------------------
 
         //El Winse
 
